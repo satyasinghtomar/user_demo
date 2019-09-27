@@ -1,0 +1,36 @@
+<h2>Users List</h2>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th class="col">Name</th>
+      <th class="col">email</th>
+      <th class="col">Street Address</th>
+      <th class="col">City</th>
+      <th class="col">State</th>
+      <th class="col">Zip Code</th>
+      <th class="col">Phone Number/th>
+      <th class="col">Profile Picture</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td class="col"><%= user.name %></td>
+        <td class="col"><%= user.email %></td>
+        <td class="col"><%= user.address['street_address'] %></td>
+        <td class="col"><%= user.address['city'] %></td>
+        <td class="col"><%= user.address['state'] %></td>
+        <td class="col"><%= user.address['zip_code'] %></td>
+        <td class="col"><%= user.address['phone_number'] %></td>
+        <td class="col"><%= image_tag user.profile_picture.url(:original) %></td>
+        <td class="col">
+          <%= link_to 'Edit', edit_user_path(user), class: "btn  btn-warning" %>
+          <%= link_to 'Destroy', users_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
